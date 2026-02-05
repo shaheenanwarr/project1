@@ -1,0 +1,117 @@
+
+# Creating the complete StudyBuddy SPA project structure
+# First, let me create the resources.json file
+
+resources_data = [
+    {
+        "id": 1,
+        "title": "MDN Web Docs",
+        "category": "Documentation",
+        "link": "https://developer.mozilla.org",
+        "description": "Comprehensive web development documentation"
+    },
+    {
+        "id": 2,
+        "title": "freeCodeCamp",
+        "category": "Learning",
+        "link": "https://freecodecamp.org",
+        "description": "Free coding bootcamp and certifications"
+    },
+    {
+        "id": 3,
+        "title": "JavaScript.info",
+        "category": "JavaScript",
+        "link": "https://javascript.info",
+        "description": "Modern JavaScript tutorial"
+    },
+    {
+        "id": 4,
+        "title": "CSS-Tricks",
+        "category": "CSS",
+        "link": "https://css-tricks.com",
+        "description": "Daily articles about CSS and web design"
+    },
+    {
+        "id": 5,
+        "title": "Stack Overflow",
+        "category": "Q&A",
+        "link": "https://stackoverflow.com",
+        "description": "Developer Q&A community"
+    },
+    {
+        "id": 6,
+        "title": "GitHub",
+        "category": "Tools",
+        "link": "https://github.com",
+        "description": "Code hosting and collaboration"
+    },
+    {
+        "id": 7,
+        "title": "W3Schools",
+        "category": "Learning",
+        "link": "https://w3schools.com",
+        "description": "Web development tutorials and references"
+    },
+    {
+        "id": 8,
+        "title": "React Documentation",
+        "category": "Framework",
+        "link": "https://react.dev",
+        "description": "Official React documentation"
+    },
+    {
+        "id": 9,
+        "title": "Vue.js Guide",
+        "category": "Framework",
+        "link": "https://vuejs.org",
+        "description": "Progressive JavaScript framework"
+    },
+    {
+        "id": 10,
+        "title": "Node.js Docs",
+        "category": "Backend",
+        "link": "https://nodejs.org",
+        "description": "JavaScript runtime documentation"
+    },
+    {
+        "id": 11,
+        "title": "Can I Use",
+        "category": "Tools",
+        "link": "https://caniuse.com",
+        "description": "Browser support tables"
+    },
+    {
+        "id": 12,
+        "title": "CodePen",
+        "category": "Tools",
+        "link": "https://codepen.io",
+        "description": "Online code editor and community"
+    },
+    {
+        "id": 13,
+        "title": "Frontend Masters",
+        "category": "Learning",
+        "link": "https://frontendmasters.com",
+        "description": "Advanced frontend courses"
+    },
+    {
+        "id": 14,
+        "title": "TypeScript Handbook",
+        "category": "JavaScript",
+        "link": "https://typescriptlang.org",
+        "description": "Typed JavaScript documentation"
+    },
+    {
+        "id": 15,
+        "title": "Web.dev",
+        "category": "Performance",
+        "link": "https://web.dev",
+        "description": "Google's web development resources"
+    }
+]
+
+import json
+with open('/mnt/kimi/output/resources.json', 'w', encoding='utf-8') as f:
+    json.dump(resources_data, f, indent=2, ensure_ascii=False)
+
+print("resources.json created successfully!")

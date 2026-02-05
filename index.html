@@ -1,0 +1,380 @@
+
+# Create the index.html file
+html_content = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyBuddy - Student Planner</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- App Shell - Header + Navigation -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>StudyBuddy</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="main-nav" id="mainNav">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#tasks" class="nav-link" data-section="tasks">
+                    <i class="fas fa-tasks"></i>
+                    <span>Tasks</span>
+                </a>
+                <a href="#habits" class="nav-link" data-section="habits">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Habits</span>
+                </a>
+                <a href="#resources" class="nav-link" data-section="resources">
+                    <i class="fas fa-bookmark"></i>
+                    <span>Resources</span>
+                </a>
+                <a href="#settings" class="nav-link" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="app-main">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="section-header">
+                <h1><i class="fas fa-chart-line"></i> Dashboard</h1>
+                <p class="section-subtitle">Your study overview</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Summary Cards -->
+                <div class="summary-cards">
+                    <div class="summary-card urgent">
+                        <div class="card-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Due Soon</h3>
+                            <p class="card-number" id="dueSoonCount">0</p>
+                        </div>
+                    </div>
+                    <div class="summary-card completed">
+                        <div class="card-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Completed</h3>
+                            <p class="card-number" id="completedCount">0</p>
+                        </div>
+                    </div>
+                    <div class="summary-card streak">
+                        <div class="card-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Habit Streak</h3>
+                            <p class="card-number" id="habitStreak">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Add Task -->
+                <div class="quick-add-card">
+                    <h3><i class="fas fa-plus-circle"></i> Quick Add Task</h3>
+                    <form id="quickTaskForm" class="quick-form">
+                        <div class="form-row">
+                            <input type="text" id="quickTaskTitle" placeholder="Task title..." required>
+                            <input type="date" id="quickTaskDate" required>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Add
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h3><i class="fas fa-tasks"></i> Task Progress</h3>
+                        <span id="progressText">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Today's Tasks -->
+                <div class="today-card">
+                    <h3><i class="fas fa-calendar-day"></i> Today</h3>
+                    <div id="todayTasksList" class="tasks-list">
+                        <p class="empty-state">No tasks for today</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tasks Section -->
+        <section id="tasks" class="section">
+            <div class="section-header">
+                <h1><i class="fas fa-tasks"></i> Tasks</h1>
+                <p class="section-subtitle">Manage your assignments</p>
+            </div>
+
+            <!-- Task Form -->
+            <div class="form-card">
+                <h3 id="taskFormTitle"><i class="fas fa-plus"></i> Add New Task</h3>
+                <form id="taskForm" class="task-form">
+                    <input type="hidden" id="editingTaskId" value="">
+                    <div class="form-group">
+                        <label for="taskTitle">Title <span class="required">*</span></label>
+                        <input type="text" id="taskTitle" placeholder="Enter task title" required>
+                        <span class="error-message" id="titleError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskDescription">Description</label>
+                        <textarea id="taskDescription" rows="3" placeholder="Add details (optional)"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="taskDueDate">Due Date <span class="required">*</span></label>
+                            <input type="date" id="taskDueDate" required>
+                            <span class="error-message" id="dateError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="taskPriority">Priority</label>
+                            <select id="taskPriority">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="taskCategory">Category</label>
+                            <input type="text" id="taskCategory" placeholder="e.g., Math, Science">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="taskSubmitBtn">
+                            <i class="fas fa-plus"></i> Add Task
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="cancelEditBtn" style="display: none;">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-bar">
+                <div class="filter-group">
+                    <label>Filter:</label>
+                    <select id="filterStatus">
+                        <option value="all">All Tasks</option>
+                        <option value="active">Active</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <select id="filterCategory">
+                        <option value="all">All Categories</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Sort:</label>
+                    <select id="sortBy">
+                        <option value="date">Due Date</option>
+                        <option value="priority">Priority</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Tasks List -->
+            <div id="tasksList" class="tasks-grid">
+                <p class="empty-state">No tasks yet. Add your first task!</p>
+            </div>
+        </section>
+
+        <!-- Habits Section -->
+        <section id="habits" class="section">
+            <div class="section-header">
+                <h1><i class="fas fa-calendar-check"></i> Habit Tracker</h1>
+                <p class="section-subtitle">Build better habits weekly</p>
+            </div>
+
+            <!-- Habit Form -->
+            <div class="form-card">
+                <h3><i class="fas fa-plus"></i> Add New Habit</h3>
+                <form id="habitForm" class="habit-form">
+                    <div class="form-row">
+                        <div class="form-group flex-grow">
+                            <label for="habitName">Habit Name <span class="required">*</span></label>
+                            <input type="text" id="habitName" placeholder="e.g., Read 30 minutes" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="habitGoal">Weekly Goal (1-7) <span class="required">*</span></label>
+                            <input type="number" id="habitGoal" min="1" max="7" value="5" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Add Habit
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Weekly Summary -->
+            <div class="weekly-summary-card">
+                <h3><i class="fas fa-trophy"></i> Weekly Summary</h3>
+                <div class="summary-stats">
+                    <div class="stat">
+                        <span class="stat-value" id="weeklyAchieved">0</span>
+                        <span class="stat-label">Goals Achieved</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="totalHabits">0</span>
+                        <span class="stat-label">Active Habits</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Habits List -->
+            <div id="habitsList" class="habits-grid">
+                <p class="empty-state">No habits yet. Start tracking!</p>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="section">
+            <div class="section-header">
+                <h1><i class="fas fa-bookmark"></i> Resources</h1>
+                <p class="section-subtitle">Curated learning materials</p>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="resources-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="resourceSearch" placeholder="Search resources...">
+                </div>
+                <select id="resourceCategoryFilter">
+                    <option value="all">All Categories</option>
+                </select>
+            </div>
+
+            <!-- Loading State -->
+            <div id="resourcesLoading" class="loading-state">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading resources...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="resourcesError" class="error-state" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Failed to load resources. Please try again later.</p>
+                <button class="btn btn-primary" id="retryResources">
+                    <i class="fas fa-redo"></i> Retry
+                </button>
+            </div>
+
+            <!-- Resources Grid -->
+            <div id="resourcesList" class="resources-grid" style="display: none;">
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="section">
+            <div class="section-header">
+                <h1><i class="fas fa-cog"></i> Settings</h1>
+                <p class="section-subtitle">Customize your experience</p>
+            </div>
+
+            <div class="settings-grid">
+                <!-- Theme Toggle -->
+                <div class="setting-card">
+                    <div class="setting-info">
+                        <h3><i class="fas fa-moon"></i> Dark Mode</h3>
+                        <p>Toggle between light and dark theme</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Reset Data -->
+                <div class="setting-card danger">
+                    <div class="setting-info">
+                        <h3><i class="fas fa-trash-alt"></i> Reset All Data</h3>
+                        <p>Clear all tasks, habits, and settings</p>
+                    </div>
+                    <button class="btn btn-danger" id="resetDataBtn">
+                        <i class="fas fa-trash"></i> Reset
+                    </button>
+                </div>
+
+                <!-- About -->
+                <div class="setting-card about-card">
+                    <div class="about-content">
+                        <div class="about-logo">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h2>StudyBuddy</h2>
+                        </div>
+                        <p class="about-description">
+                            A comprehensive student planner application helping you organize tasks, 
+                            track habits, and manage educational resources all in one place.
+                        </p>
+                        <div class="about-meta">
+                            <p><strong>Version:</strong> 1.0.0</p>
+                            <p><strong>Developer:</strong> Student Name</p>
+                            <p><strong>Course:</strong> Web Programming 1</p>
+                        </div>
+                        <div class="about-features">
+                            <h4>Features:</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Task Management with CRUD</li>
+                                <li><i class="fas fa-check"></i> Weekly Habit Tracking</li>
+                                <li><i class="fas fa-check"></i> Educational Resources</li>
+                                <li><i class="fas fa-check"></i> Progress Dashboard</li>
+                                <li><i class="fas fa-check"></i> Dark/Light Theme</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <p>&copy; 2025 StudyBuddy. Built for Web Programming 1.</p>
+    </footer>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h3><i class="fas fa-exclamation-circle"></i> Confirm Action</h3>
+            <p id="confirmMessage">Are you sure?</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                <button class="btn btn-danger" id="confirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>'''
+
+with open('/mnt/kimi/output/index.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print("index.html created successfully!")
