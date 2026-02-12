@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyBuddy - مساعدك الدراسي</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- App Shell Header -->
+    <header class="app-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo.svg" alt="StudyBuddy Logo" class="logo-image">
+                    <h1>StudyBuddy</h1>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="app-nav" id="appNav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#dashboard" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>لوحة التحكم</span>
+                </a></li>
+                <li><a href="#tasks" class="nav-link" data-section="tasks">
+                    <i class="fas fa-tasks"></i>
+                    <span>المهام</span>
+                </a></li>
+                <li><a href="#habits" class="nav-link" data-section="habits">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>العادات</span>
+                </a></li>
+                <li><a href="#resources" class="nav-link" data-section="resources">
+                    <i class="fas fa-book"></i>
+                    <span>الموارد</span>
+                </a></li>
+                <li><a href="#settings" class="nav-link" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>الإعدادات</span>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="app-main">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="container">
+                <h2 class="section-title">لوحة التحكم</h2>
+                
+                <!-- Summary Cards -->
+                <div class="summary-cards">
+                    <div class="card summary-card">
+                        <div class="card-icon" style="background: #ff6b6b;">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>المهام القريبة</h3>
+                            <p class="card-number" id="dueSoonCount">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card summary-card">
+                        <div class="card-icon" style="background: #51cf66;">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>المهام المكتملة</h3>
+                            <p class="card-number" id="completedCount">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card summary-card">
+                        <div class="card-icon" style="background: #339af0;">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>سلسلة العادات</h3>
+                            <p class="card-number" id="habitStreak">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="card progress-card">
+                    <h3>نسبة إنجاز المهام</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+                    <p class="progress-text" id="progressText">0% مكتمل</p>
+                </div>
+
+                <!-- Today's Tasks -->
+                <div class="card today-tasks">
+                    <h3>مهام اليوم والأيام القادمة</h3>
+                    <div id="todayTasksList" class="today-tasks-list">
+                        <p class="empty-state">لا توجد مهام قريبة</p>
+                    </div>
+                </div>
+
+                <!-- Quick Add Task -->
+                <div class="card quick-add">
+                    <h3>إضافة مهمة سريعة</h3>
+                    <form id="quickAddForm" class="quick-add-form">
+                        <input type="text" id="quickTaskTitle" placeholder="عنوان المهمة" required>
+                        <input type="date" id="quickTaskDate" required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            إضافة
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tasks Section -->
+        <section id="tasks" class="section">
+            <div class="container">
+                <h2 class="section-title">إدارة المهام</h2>
+                
+                <!-- Task Form -->
+                <div class="card task-form-card">
+                    <h3 id="taskFormTitle">إضافة مهمة جديدة</h3>
+                    <form id="taskForm" class="task-form">
+                        <div class="form-group">
+                            <label for="taskTitle">العنوان *</label>
+                            <input type="text" id="taskTitle" required>
+                            <span class="error-message" id="titleError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="taskDescription">الوصف</label>
+                            <textarea id="taskDescription" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="taskDueDate">تاريخ الاستحقاق *</label>
+                                <input type="date" id="taskDueDate" required>
+                                <span class="error-message" id="dateError"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="taskPriority">الأولوية</label>
+                                <select id="taskPriority">
+                                    <option value="low">منخفضة</option>
+                                    <option value="medium" selected>متوسطة</option>
+                                    <option value="high">عالية</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="taskCategory">الفئة</label>
+                            <select id="taskCategory">
+                                <option value="دراسة">دراسة</option>
+                                <option value="واجبات">واجبات</option>
+                                <option value="مشاريع">مشاريع</option>
+                                <option value="امتحانات">امتحانات</option>
+                                <option value="أخرى">أخرى</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="taskFormSubmit">
+                                <i class="fas fa-plus"></i>
+                                إضافة مهمة
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="taskFormCancel" style="display: none;">
+                                إلغاء
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Task Controls -->
+                <div class="card task-controls">
+                    <div class="controls-group">
+                        <div class="filter-group">
+                            <label>الفلترة:</label>
+                            <button class="btn-filter active" data-filter="all">الكل</button>
+                            <button class="btn-filter" data-filter="active">نشط</button>
+                            <button class="btn-filter" data-filter="completed">مكتمل</button>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>الفئة:</label>
+                            <select id="categoryFilter" class="filter-select">
+                                <option value="all">جميع الفئات</option>
+                                <option value="دراسة">دراسة</option>
+                                <option value="واجبات">واجبات</option>
+                                <option value="مشاريع">مشاريع</option>
+                                <option value="امتحانات">امتحانات</option>
+                                <option value="أخرى">أخرى</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>الترتيب:</label>
+                            <select id="sortTasks" class="filter-select">
+                                <option value="dueDate">حسب التاريخ</option>
+                                <option value="priority">حسب الأولوية</option>
+                                <option value="title">حسب العنوان</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tasks List -->
+                <div id="tasksList" class="tasks-list">
+                    <p class="empty-state">لا توجد مهام حالياً</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Habits Section -->
+        <section id="habits" class="section">
+            <div class="container">
+                <h2 class="section-title">متتبع العادات الأسبوعي</h2>
+                
+                <!-- Habit Form -->
+                <div class="card habit-form-card">
+                    <h3>إضافة عادة جديدة</h3>
+                    <form id="habitForm" class="habit-form">
+                        <div class="form-group">
+                            <label for="habitName">اسم العادة *</label>
+                            <input type="text" id="habitName" placeholder="مثال: قراءة 30 دقيقة" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="habitGoal">الهدف الأسبوعي (عدد الأيام) *</label>
+                            <input type="number" id="habitGoal" min="1" max="7" value="7" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            إضافة عادة
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Weekly Summary -->
+                <div class="card weekly-summary">
+                    <h3>ملخص الأسبوع</h3>
+                    <p class="summary-stat" id="weeklySummary">0 من 0 أهداف محققة</p>
+                </div>
+
+                <!-- Habits List -->
+                <div id="habitsList" class="habits-list">
+                    <p class="empty-state">لا توجد عادات حالياً</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="section">
+            <div class="container">
+                <h2 class="section-title">الموارد التعليمية</h2>
+                
+                <!-- Search and Filter -->
+                <div class="card resources-controls">
+                    <div class="search-group">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="resourceSearch" placeholder="ابحث عن مورد...">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>الفئة:</label>
+                        <select id="resourceCategoryFilter" class="filter-select">
+                            <option value="all">جميع الفئات</option>
+                            <option value="برمجة">برمجة</option>
+                            <option value="تصميم">تصميم</option>
+                            <option value="رياضيات">رياضيات</option>
+                            <option value="لغات">لغات</option>
+                            <option value="أخرى">أخرى</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn btn-secondary" id="showFavoritesBtn">
+                        <i class="fas fa-star"></i>
+                        المفضلة فقط
+                    </button>
+                </div>
+
+                <!-- Resources List -->
+                <div id="resourcesList" class="resources-list">
+                    <div class="loading-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>جاري تحميل الموارد...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="section">
+            <div class="container">
+                <h2 class="section-title">الإعدادات</h2>
+                
+                <!-- Theme Toggle -->
+                <div class="card settings-card">
+                    <h3>المظهر</h3>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <i class="fas fa-moon"></i>
+                            <span>الوضع الداكن</span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="themeToggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Data Management -->
+                <div class="card settings-card">
+                    <h3>إدارة البيانات</h3>
+                    <button class="btn btn-danger" id="resetDataBtn">
+                        <i class="fas fa-trash-alt"></i>
+                        حذف جميع البيانات
+                    </button>
+                    <p class="warning-text">تحذير: هذا الإجراء لا يمكن التراجع عنه</p>
+                </div>
+
+                <!-- About -->
+                <div class="card settings-card">
+                    <h3>عن التطبيق</h3>
+                    <div class="about-content">
+                        <p><strong>StudyBuddy</strong> هو تطبيق ويب متكامل يساعد الطلاب على:</p>
+                        <ul>
+                            <li>تنظيم المهام والواجبات الدراسية</li>
+                            <li>تتبع العادات اليومية والأسبوعية</li>
+                            <li>الوصول السريع للموارد التعليمية</li>
+                            <li>متابعة التقدم الدراسي</li>
+                        </ul>
+                        <p class="student-info">
+                            <i class="fas fa-user"></i>
+                            <strong>تم التطوير بواسطة:</strong> [اسم الطالب]
+                        </p>
+                        <p class="course-info">
+                            <i class="fas fa-book"></i>
+                            مشروع مادة: برمجة ويب 1 - SDEV 2105
+                        </p>
+                        <p class="university-info">
+                            <i class="fas fa-university"></i>
+                            الجامعة الإسلامية - غزة
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="container">
+            <p>&copy; 2026 StudyBuddy. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h3 id="confirmTitle">تأكيد</h3>
+            <p id="confirmMessage">هل أنت متأكد؟</p>
+            <div class="modal-actions">
+                <button class="btn btn-danger" id="confirmYes">نعم</button>
+                <button class="btn btn-secondary" id="confirmNo">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

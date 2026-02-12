@@ -1,0 +1,79 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="95" fill="#4c6ef5" opacity="0.1"/>
+  
+  <!-- Gradient Definition -->
+  <defs>
+    <linearGradient id="bookGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4c6ef5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7950f2;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="capGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#51cf66;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#37b24d;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Open Book -->
+  <g transform="translate(100, 100)">
+    <!-- Left Page -->
+    <path d="M -35 -20 Q -35 -15, -30 -10 L -30 25 Q -35 20, -35 25 Z" 
+          fill="url(#bookGradient)" opacity="0.8"/>
+    
+    <!-- Right Page -->
+    <path d="M 35 -20 Q 35 -15, 30 -10 L 30 25 Q 35 20, 35 25 Z" 
+          fill="url(#bookGradient)"/>
+    
+    <!-- Book Spine -->
+    <rect x="-3" y="-20" width="6" height="45" fill="#3b5bdb"/>
+    
+    <!-- Pages Lines (Left) -->
+    <line x1="-28" y1="-5" x2="-10" y2="-5" stroke="#4c6ef5" stroke-width="1.5" opacity="0.4"/>
+    <line x1="-28" y1="0" x2="-10" y2="0" stroke="#4c6ef5" stroke-width="1.5" opacity="0.4"/>
+    <line x1="-28" y1="5" x2="-10" y2="5" stroke="#4c6ef5" stroke-width="1.5" opacity="0.4"/>
+    <line x1="-28" y1="10" x2="-10" y2="10" stroke="#4c6ef5" stroke-width="1.5" opacity="0.4"/>
+    
+    <!-- Pages Lines (Right) -->
+    <line x1="10" y1="-5" x2="28" y2="-5" stroke="#7950f2" stroke-width="1.5" opacity="0.4"/>
+    <line x1="10" y1="0" x2="28" y2="0" stroke="#7950f2" stroke-width="1.5" opacity="0.4"/>
+    <line x1="10" y1="5" x2="28" y2="5" stroke="#7950f2" stroke-width="1.5" opacity="0.4"/>
+    <line x1="10" y1="10" x2="28" y2="10" stroke="#7950f2" stroke-width="1.5" opacity="0.4"/>
+    
+    <!-- Graduation Cap -->
+    <g transform="translate(0, -50)">
+      <!-- Cap Board -->
+      <polygon points="-40,-5 0,-15 40,-5 0,5" fill="url(#capGradient)"/>
+      
+      <!-- Cap Top -->
+      <ellipse cx="0" cy="-5" rx="8" ry="3" fill="#37b24d"/>
+      
+      <!-- Tassel -->
+      <line x1="0" y1="-5" x2="15" y2="-15" stroke="#ffd43b" stroke-width="2"/>
+      <circle cx="15" cy="-15" r="3" fill="#ffd43b"/>
+      <line x1="15" y1="-15" x2="15" y2="-20" stroke="#ffd43b" stroke-width="1.5"/>
+      <line x1="15" y1="-15" x2="20" y2="-18" stroke="#ffd43b" stroke-width="1.5"/>
+      <line x1="15" y1="-15" x2="10" y2="-18" stroke="#ffd43b" stroke-width="1.5"/>
+    </g>
+    
+    <!-- Check Mark (Success Symbol) -->
+    <g transform="translate(25, 15)">
+      <circle cx="0" cy="0" r="12" fill="#51cf66" opacity="0.2"/>
+      <path d="M -4 0 L -2 3 L 5 -4" stroke="#51cf66" stroke-width="3" 
+            fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    
+    <!-- Star (Achievement Symbol) -->
+    <g transform="translate(-25, 15)">
+      <circle cx="0" cy="0" r="12" fill="#ffd43b" opacity="0.2"/>
+      <path d="M 0,-6 L 2,-2 L 6,-2 L 3,1 L 4,5 L 0,3 L -4,5 L -3,1 L -6,-2 L -2,-2 Z" 
+            fill="#ffd43b"/>
+    </g>
+  </g>
+  
+  <!-- Decorative Elements -->
+  <circle cx="30" cy="40" r="4" fill="#4c6ef5" opacity="0.3"/>
+  <circle cx="170" cy="50" r="3" fill="#7950f2" opacity="0.3"/>
+  <circle cx="160" cy="160" r="5" fill="#51cf66" opacity="0.3"/>
+  <circle cx="40" cy="150" r="3" fill="#ffd43b" opacity="0.3"/>
+</svg>

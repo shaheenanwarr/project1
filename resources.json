@@ -1,0 +1,142 @@
+[
+    {
+        "id": 1,
+        "title": "دورة تطوير الويب الشاملة",
+        "description": "دورة متكاملة تغطي HTML, CSS, JavaScript من المبتدئين للمحترفين",
+        "category": "برمجة",
+        "link": "https://www.freecodecamp.org"
+    },
+    {
+        "id": 2,
+        "title": "أساسيات JavaScript",
+        "description": "تعلم أساسيات لغة JavaScript وبرمجة الويب التفاعلية",
+        "category": "برمجة",
+        "link": "https://javascript.info"
+    },
+    {
+        "id": 3,
+        "title": "دليل CSS الحديث",
+        "description": "تعلم Flexbox, Grid, والتقنيات الحديثة في CSS",
+        "category": "تصميم",
+        "link": "https://css-tricks.com"
+    },
+    {
+        "id": 4,
+        "title": "مبادئ التصميم الجرافيكي",
+        "description": "أساسيات التصميم والألوان والتنسيق",
+        "category": "تصميم",
+        "link": "https://www.canva.com/learn/design"
+    },
+    {
+        "id": 5,
+        "title": "Khan Academy - الرياضيات",
+        "description": "دروس تفاعلية في الجبر، الهندسة، وحساب التفاضل والتكامل",
+        "category": "رياضيات",
+        "link": "https://www.khanacademy.org/math"
+    },
+    {
+        "id": 6,
+        "title": "مسائل رياضية تطبيقية",
+        "description": "تمارين ومسائل متنوعة في الرياضيات",
+        "category": "رياضيات",
+        "link": "https://www.mathway.com"
+    },
+    {
+        "id": 7,
+        "title": "Duolingo - تعلم اللغات",
+        "description": "تطبيق تفاعلي لتعلم اللغات الأجنبية",
+        "category": "لغات",
+        "link": "https://www.duolingo.com"
+    },
+    {
+        "id": 8,
+        "title": "قواعد اللغة الإنجليزية",
+        "description": "دروس شاملة في قواعد اللغة الإنجليزية",
+        "category": "لغات",
+        "link": "https://www.englishgrammar.org"
+    },
+    {
+        "id": 9,
+        "title": "Git و GitHub للمبتدئين",
+        "description": "تعلم أساسيات التحكم في الإصدارات والعمل الجماعي",
+        "category": "برمجة",
+        "link": "https://guides.github.com"
+    },
+    {
+        "id": 10,
+        "title": "مبادئ الخوارزميات",
+        "description": "فهم الخوارزميات الأساسية وهياكل البيانات",
+        "category": "برمجة",
+        "link": "https://www.geeksforgeeks.org"
+    },
+    {
+        "id": 11,
+        "title": "تصميم واجهات المستخدم",
+        "description": "مبادئ UI/UX وتصميم التجربة الجيدة",
+        "category": "تصميم",
+        "link": "https://www.nngroup.com"
+    },
+    {
+        "id": 12,
+        "title": "Figma للمصممين",
+        "description": "دروس في استخدام أداة Figma للتصميم",
+        "category": "تصميم",
+        "link": "https://www.figma.com/resources/learn-design"
+    },
+    {
+        "id": 13,
+        "title": "الإحصاء والاحتمالات",
+        "description": "مقدمة في علم الإحصاء والاحتمالات",
+        "category": "رياضيات",
+        "link": "https://www.stat.berkeley.edu"
+    },
+    {
+        "id": 14,
+        "title": "Python للمبتدئين",
+        "description": "تعلم لغة Python من الصفر",
+        "category": "برمجة",
+        "link": "https://www.learnpython.org"
+    },
+    {
+        "id": 15,
+        "title": "الكتابة الأكاديمية",
+        "description": "تطوير مهارات الكتابة البحثية والأكاديمية",
+        "category": "لغات",
+        "link": "https://owl.purdue.edu"
+    },
+    {
+        "id": 16,
+        "title": "React للتطوير الحديث",
+        "description": "بناء تطبيقات ويب تفاعلية باستخدام React",
+        "category": "برمجة",
+        "link": "https://react.dev"
+    },
+    {
+        "id": 17,
+        "title": "نظرية الألوان في التصميم",
+        "description": "فهم الألوان وكيفية استخدامها بفعالية",
+        "category": "تصميم",
+        "link": "https://www.colormatters.com"
+    },
+    {
+        "id": 18,
+        "title": "التفكير المنطقي",
+        "description": "تطوير مهارات التفكير النقدي والمنطقي",
+        "category": "أخرى",
+        "link": "https://www.criticalthinking.org"
+    },
+    {
+        "id": 19,
+        "title": "مهارات العرض والتقديم",
+        "description": "تحسين مهارات العرض والتواصل الفعال",
+        "category": "أخرى",
+        "link": "https://www.toastmasters.org"
+    },
+    {
+        "id": 20,
+        "title": "إدارة الوقت والإنتاجية",
+        "description": "استراتيجيات لتحسين إدارة الوقت والإنتاجية",
+        "category": "أخرى",
+        "link": "https://todoist.com/productivity-methods"
+    }
+]

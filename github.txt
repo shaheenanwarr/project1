@@ -1,0 +1,30 @@
+رابط المستودع على GitHub:
+
+[ضع رابط المستودع هنا بعد رفع المشروع]
+
+مثال:
+https://github.com/username/studybuddy-spa
+
+---
+
+تعليمات رفع المشروع على GitHub:
+
+1. قم بإنشاء حساب على GitHub إذا لم يكن لديك
+2. أنشئ مستودع جديد (New Repository)
+3. اسم المستودع المقترح: studybuddy-spa
+4. اختر Public أو Private حسب رغبتك
+5. لا تضف README (لأنه موجود مسبقاً)
+6. قم برفع جميع ملفات المشروع
+
+طريقة الرفع:
+- يمكنك استخدام GitHub Desktop (أسهل للمبتدئين)
+- أو استخدام سطر الأوامر:
+
+git init
+git add .
+git commit -m "Initial commit - StudyBuddy SPA"
+git branch -M main
+git remote add origin [رابط المستودع]
+git push -u origin main
+
+بعد رفع المشروع، انسخ رابط المستودع وضعه أعلاه.
